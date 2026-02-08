@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Liquid Card Extractor
 
-## Getting Started
+A modern, production-ready web application for extracting contact information from business cards using GPT Vision (Daedalus API). Features a beautiful "Liquid Glass" UI, drag-and-drop uploads, and Excel export.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Liquid Glass UI**: Modern, aesthetic interface with animated mesh gradients and glassmorphism.
+- **AI Extraction**: Uses Daedalus/GPT Vision to extract fields like Name, Email, Phone, Company, etc.
+- **Bulk Processing**: Upload multiple cards at once (concurrency limited for performance).
+- **Data Normalization**: Automatically formats phone numbers and emails.
+- **Excel Export**: Download edited results as `.xlsx`.
+- **Local Privacy**: Images are processed in memory and not permanently stored on the server.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Configure Environment**
+   Copy `.env.example` to `.env.local` and add your Daedalus API key:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Edit `.env.local`:
+   ```env
+   DAEDALUS_API_KEY=your_key_here
+   ```
 
-## Learn More
+3. **Run Locally**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+## Architecture
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Frontend**: Next.js 14 (App Router), React, Tailwind CSS, Framer Motion.
+- **Backend**: Next.js API Routes (`/api/extract`).
+- **State Management**: React `useState` with optimistic UI updates.
+- **Data Processing**:
+  - `app/lib/daedalus.ts`: Handles API communication and resilient JSON parsing.
+  - `app/lib/utils.ts`: Normalization logic.
+- **Styling**: Tailwind CSS with custom variables for the glass effect in `globals.css`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech Stack
 
-## Deploy on Vercel
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- xlsx (SheetJS)
+- Lucide React (Icons)
+- Zod (Validation schema)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT

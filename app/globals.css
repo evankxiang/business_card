@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-glass-border: var(--glass-border);
+  --color-glass-surface: var(--glass-surface);
+  --color-glass-highlight: var(--glass-highlight);
+}
+
+:root {
+  --background: #fdfdfd;
+  --foreground: #171717;
+  
+  /* Liquid Glass Palette - Light */
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-surface: rgba(255, 255, 255, 0.2);
+  --glass-highlight: rgba(255, 255, 255, 0.5);
+  
+  --mesh-1: #ff9a9e;
+  --mesh-2: #fad0c4;
+  --mesh-3: #a18cd1;
+  --mesh-4: #fbc2eb;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    
+    /* Liquid Glass Palette - Dark */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-surface: rgba(0, 0, 0, 0.2);
+    --glass-highlight: rgba(255, 255, 255, 0.1);
+
+    --mesh-1: #2E3192;
+    --mesh-2: #1BFFFF;
+    --mesh-3: #667eea;
+    --mesh-4: #764ba2;
   }
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated Mesh Gradient Background */
+body::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(at 0% 0%, var(--mesh-1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, var(--mesh-2) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, var(--mesh-3) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, var(--mesh-4) 0px, transparent 50%);
+  filter: blur(80px);
+  opacity: 0.15;
+  z-index: -1;
+  animation: mesh 20s ease infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes mesh {
+  0% { transform: rotate(0deg) translate(0, 0); }
+  100% { transform: rotate(5deg) translate(20px, 20px); }
+}
+
+/* Utility to hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
