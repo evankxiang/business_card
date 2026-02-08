@@ -1,4 +1,4 @@
-# Liquid Card Extractor
+# Business Card Catalog
 
 Local app that allows for lab members to upload business cards into a common database that may be printed and used for reference. Scanned using Claude Opus 4.5 via Dedalus API. 
 
