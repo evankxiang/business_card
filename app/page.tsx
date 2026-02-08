@@ -328,7 +328,6 @@ export default function Home() {
       ) : cards.length > 0 ? (
         <ResultsTable
           data={cards}
-          pocName={confirmedPoc}
           onUpdate={handleUpdate}
           onRemove={handleRemove}
           onClearAll={handleClearAll}

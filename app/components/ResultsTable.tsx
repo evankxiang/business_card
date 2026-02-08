@@ -8,20 +8,19 @@ import { BusinessCardData, ExtractedData } from "@/app/lib/types";
 
 interface ResultsTableProps {
     data: BusinessCardData[];
-    pocName: string;
     onUpdate: (id: string, field: keyof BusinessCardData, value: string) => void;
     onRemove: (id: string) => void;
     onClearAll: () => void;
 }
 
-export function ResultsTable({ data, pocName, onUpdate, onRemove, onClearAll }: ResultsTableProps) {
+export function ResultsTable({ data, onUpdate, onRemove, onClearAll }: ResultsTableProps) {
     const [exporting, setExporting] = useState(false);
 
     const handleExport = (type: "csv" | "xlsx") => {
         setExporting(true);
         try {
             const exportData = data.map((item) => ({
-                "POC": item.poc_name || pocName || "",
+                "POC": item.poc_name || "",
                 "Full Name": item.full_name || "",
                 "First Name": item.first_name || "",
                 "Last Name": item.last_name || "",
@@ -121,7 +120,7 @@ export function ResultsTable({ data, pocName, onUpdate, onRemove, onClearAll }: 
                                     <StatusBadge status={row.status} />
                                 </td>
                                 <td className="px-4 py-3 text-gray-500 text-xs">
-                                    {row.poc_name || pocName || "-"}
+                                    {row.poc_name || "-"}
                                 </td>
                                 <td className="px-4 py-3">
                                     <input
