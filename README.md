@@ -1,6 +1,6 @@
 # Liquid Card Extractor
 
-A modern, production-ready web application for extracting contact information from business cards using GPT Vision (Daedalus API). 
+Local app that allows for lab members to upload business cards into a common database that may be printed and used for reference. Scanned using Claude Opus 4.5 via Dedalus API. 
 
 ## Setup
 
