@@ -1,15 +1,6 @@
 # Liquid Card Extractor
 
-A modern, production-ready web application for extracting contact information from business cards using GPT Vision (Daedalus API). Features a beautiful "Liquid Glass" UI, drag-and-drop uploads, and Excel export.
-
-## Features
-
-- **Liquid Glass UI**: Modern, aesthetic interface with animated mesh gradients and glassmorphism.
-- **AI Extraction**: Uses Daedalus/GPT Vision to extract fields like Name, Email, Phone, Company, etc.
-- **Bulk Processing**: Upload multiple cards at once (concurrency limited for performance).
-- **Data Normalization**: Automatically formats phone numbers and emails.
-- **Excel Export**: Download edited results as `.xlsx`.
-- **Local Privacy**: Images are processed in memory and not permanently stored on the server.
+A modern, production-ready web application for extracting contact information from business cards using GPT Vision (Daedalus API). 
 
 ## Setup
 
